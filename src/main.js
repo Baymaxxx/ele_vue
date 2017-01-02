@@ -3,6 +3,7 @@
 import Vue from 'vue';
 import App from './App.vue';
 import VueRouter from 'vue-router';
+import VueResource from 'vue-resource';
 import goods from './components/goods/goods.vue';
 import seller from './components/seller/seller.vue';
 import ratings from './components/ratings/ratings.vue';
@@ -10,7 +11,7 @@ import './common/sass/base.scss';
 Vue.config.debug = true;
 
 Vue.use(VueRouter);
-
+Vue.use(VueResource);
 // 创建一个路由器实例
 // 并且配置路由规则
 const router = new VueRouter({
