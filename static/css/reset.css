@@ -40,11 +40,4 @@ textarea{overflow:auto}
 optgroup{font-weight:bold}
 table{border-collapse:collapse;border-spacing:0}
 td,th{padding:0}
-/*清楚阴影*/
-body{
-  background-color: #f5f5f5;
-  -webkit-overflow-scrolling: touch;
-}
-label,input{
-  -webkit-tap-highlight-color:rgba(0,0,0,0);
-}
+

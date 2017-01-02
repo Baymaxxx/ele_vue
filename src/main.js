@@ -6,7 +6,7 @@ import VueRouter from 'vue-router';
 import goods from './components/goods/goods.vue';
 import seller from './components/seller/seller.vue';
 import ratings from './components/ratings/ratings.vue';
-
+import './common/sass/base.scss';
 Vue.config.debug = true;
 
 Vue.use(VueRouter);
@@ -15,6 +15,7 @@ Vue.use(VueRouter);
 // 并且配置路由规则
 const router = new VueRouter({
   mode: 'history',
+  linkActiveClass: 'active',
   routes: [
     {
       path: '/goods',
