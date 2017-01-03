@@ -28,7 +28,7 @@
     color: #fff;
     .content-wrapper{
       padding: 24px 12px 18px 24px;
-      font-style: 0;
+      font-size: 0;
       .avatar{
         display: inline-block;
       }
