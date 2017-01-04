@@ -7,7 +7,7 @@ import VueResource from 'vue-resource';
 import goods from './components/goods/goods.vue';
 import seller from './components/seller/seller.vue';
 import ratings from './components/ratings/ratings.vue';
-import './common/sass/base.scss';
+import './common/sass/index.scss';
 Vue.config.debug = true;
 
 Vue.use(VueRouter);
