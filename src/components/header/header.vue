@@ -17,41 +17,56 @@
           <span class="text">{{seller.supports[0].description}}个</span>
         </div>
       </div>
-      <div v-if="seller.supports" class="support-count">
+      <div v-if="seller.supports" class="support-count" @click="showDetail">
         <span class="count">{{seller.supports.length}}</span>
         <i class="icon-keyboard_arrow_right"></i>
       </div>
     </div>
-    <div class="bulletin-wrapper">
-      <div class="bulletin-title"></div>
-      <div class="bulletin-text">{{seller.bulletin}}</div>
+    <div class="bulletin-wrapper" @click="showDetail">
+      <span class="bulletin-title"></span><span class="bulletin-text">{{seller.bulletin}}</span>
       <i class="icon-keyboard_arrow_right"></i>
+    </div>
+    <div class="background">
+      <img :src="seller.avatar" alt="avatar" width="100%" height="100%">
+    </div>
+    <div v-show="detailShow" class="detail">
+      <div class="detail-wrapper clearfix">
+        <div class="detail-main">
+          <h1 class="name">{{seller.name}}</h1>
+        </div>
+      </div>
+      <div class="detail-close">
+        <i class="icon-close" @click="hideDetail"></i>
+      </div>
     </div>
   </div>
 </template>
 <style lang="scss" rel="stylesheet/scss">
   @import "../../common/sass/mixin";
-  .header{
-    background-color: #999;
+
+  .header {
+    position: relative;
     color: #fff;
-    .content-wrapper{
+    background: rgba(7, 17, 27, 0.5);
+    overflow: hidden;
+    .content-wrapper {
       position: relative;
       padding: 24px 12px 18px 24px;
       font-size: 0;
-      .avatar{
+      .avatar {
         display: inline-block;
         vertical-align: top;
-        img{
+        img {
           border-radius: 2px;
         }
       }
-      .content{
+      .content {
         display: inline-block;
-        margin-left:16px;
+        margin-left: 16px;
         font-size: 14px;
-        .title{
+        .title {
           margin: 2px 0 8px;
-          .brand{
+          .brand {
             vertical-align: top;
             display: inline-block;
             width: 30px;
@@ -59,7 +74,7 @@
             @include bg-image("brand");
             background-size: 30px 18px;
             background-repeat: no-repeat;
-            .name{
+            .name {
               margin-left: 6px;
               font-size: 16px;
               line-height: 18px;
@@ -67,58 +82,131 @@
             }
           }
         }
-        .description{
-          margin-bottom:10px;
+        .description {
+          margin-bottom: 10px;
           line-height: 12px;
           font-size: 12px;
         }
-        .support{
-          .icon{
+        .support {
+          .icon {
             display: inline-block;
             width: 12px;
             height: 12px;
             margin-right: 4px;
             background-size: 12px;
             background-repeat: no-repeat;
-            &.decrease{
+            &.decrease {
               @include bg-image('decrease_1');
             }
-            &.discount{
+            &.discount {
               @include bg-image('discount_1');
             }
-            &.guarantee{
+            &.guarantee {
               @include bg-image('guarantee_1');
             }
-            &.special{
+            &.special {
               @include bg-image('special_1')
             }
           }
-          .text{
+          .text {
             line-height: 12px;
-            font-size:10px;
+            font-size: 10px;
             vertical-align: top;
           }
         }
       }
-      .support-count{
+      .support-count {
         position: absolute;
-        right:12px;
-        bottom:14px;
-        padding:0 8px;
+        right: 12px;
+        bottom: 14px;
+        padding: 0 8px;
         height: 20px;
-        line-height:20px;
+        line-height: 20px;
         border-radius: 14px;
-        background:rgba(0,0,0,0.2);
+        background: rgba(0, 0, 0, 0.2);
         text-align: center;
-        .count{
+        .count {
           vertical-align: top;
-          font-size:10px;
+          font-size: 10px;
         }
-        .icon-keyboard_arrow_right{
+        .icon-keyboard_arrow_right {
           margin-left: 2px;
           line-height: 20px;
           font-size: 12px;
         }
+      }
+    }
+    .bulletin-wrapper {
+      position: relative;
+      height: 28px;
+      line-height: 28px;
+      padding: 0 22px 0 12px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      background: rgba(7, 17, 27, 0.2);
+      .bulletin-title {
+        display: inline-block;
+        width: 22px;
+        height: 12px;
+        vertical-align: top;
+        margin-top: 8px;
+        @include bg-image('bulletin');
+        background-repeat: no-repeat;
+        background-size: 22px 12px;
+      }
+      .bulletin-text {
+        margin: 0 10px;
+        vertical-align: top;
+        font-size: 10px;
+        font-weight: 200;
+      }
+      .icon-keyboard_arrow_right {
+        position: absolute;
+        right: 12px;
+        top: 8px;
+        font-size: 10px;
+      }
+    }
+    .background {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      filter: blur(10px);
+    }
+    .detail {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 100;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background: rgba(7, 17, 27, 0.8);
+      .detail-wrapper {
+        min-height: 100%;
+        width: 100%;
+        .detail-main {
+          margin-top: 64px;
+          padding-bottom: 64px;
+          .name {
+            line-height: 16px;
+            text-align: center;
+            font-size: 16px;
+            font-weight: 700;
+          }
+        }
+      }
+      .detail-close {
+        position: relative;
+        width: 32px;
+        height: 32px;
+        margin: -64px auto 0;
+        clear: both;
+        font-size: 32px;
       }
     }
   }
@@ -126,12 +214,25 @@
 <script>
   export default{
     props: {
-        seller: {
-            type: Object
-        }
+      seller: {
+        type: Object
+      }
+    },
+    data() {
+      return {
+        detailShow: true
+      };
+    },
+    methods: {
+      showDetail() {
+        this.detailShow = true;
+      },
+      hideDetail() {
+        this.detailShow = false;
+      }
     },
     created() {
-     this.classMap = ['decrease', 'discount', 'special', 'invoice', 'guarantee'];
+      this.classMap = ['decrease', 'discount', 'special', 'invoice', 'guarantee'];
     }
   };
 </script>
