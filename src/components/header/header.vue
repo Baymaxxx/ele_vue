@@ -33,6 +33,9 @@
       <div class="detail-wrapper clearfix">
         <div class="detail-main">
           <h1 class="name">{{seller.name}}</h1>
+          <div class="star-warpper">
+            <star :size="48" :score="seller.score"></star>
+          </div>
         </div>
       </div>
       <div class="detail-close">
@@ -43,7 +46,6 @@
 </template>
 <style lang="scss" rel="stylesheet/scss">
   @import "../../common/sass/mixin";
-
   .header {
     position: relative;
     color: #fff;
@@ -212,6 +214,8 @@
   }
 </style>
 <script>
+  import star from 'components/star/star';
+
   export default{
     props: {
       seller: {
@@ -233,6 +237,9 @@
     },
     created() {
       this.classMap = ['decrease', 'discount', 'special', 'invoice', 'guarantee'];
+    },
+    components: {
+        star: star
     }
   };
 </script>
