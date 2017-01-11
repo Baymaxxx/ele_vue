@@ -9,7 +9,7 @@
     font-size: 0;
     .star-item{
       display: inline-block;
-      background-repeat:no-repeat ;
+      background-repeat:no-repeat;
     }
     &.star-48{
       .star-item{
@@ -17,6 +17,7 @@
         height: 20px;
         margin-right:22px;
         background-size: 20px 20px;
+        padding:0 10px;
         &:last-child{}
         margin-right: 0;
         &.on{
