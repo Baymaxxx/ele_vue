@@ -34,7 +34,8 @@
         <div class="detail-main">
           <h1 class="name">{{seller.name}}</h1>
           <div class="star-warpper">
-            <star :size="48" :score="seller.score"></star>
+             <!--<star :size="48" :score="seller.score"></star>-->
+            <star1 :size="48" :score="seller.score"></star1>
           </div>
         </div>
       </div>
@@ -214,7 +215,8 @@
   }
 </style>
 <script>
-  import star from 'components/star/star';
+  import star from 'components/star/star.vue';
+  import star1 from 'components/star/star1.vue';
 
   export default{
     props: {
@@ -239,7 +241,8 @@
       this.classMap = ['decrease', 'discount', 'special', 'invoice', 'guarantee'];
     },
     components: {
-        star: star
+        star: star,
+        star1: star1
     }
   };
 </script>

@@ -14,7 +14,7 @@ var port = process.env.PORT || config.dev.port
 // https://github.com/chimurai/http-proxy-middleware
 var proxyTable = config.dev.proxyTable
 
-var app = express()
+var app = express();
 var appData = require('../data.json');
 var seller = appData.seller;
 var goods = appData.goods;
