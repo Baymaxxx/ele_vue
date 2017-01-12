@@ -36,7 +36,7 @@
           <h1 class="name">{{seller.name}}</h1>
           <div class="star-warpper">
             <star :size="48" :score="seller.score"></star>
-            <!--<star1 :size="48" :score="seller.score"></star1>-->
+            <!--<star1 :size="24" :score="seller.score"></star1>-->
           </div>
           <div class="title">
             <div class="line"></div>

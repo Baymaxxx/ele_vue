@@ -18,8 +18,9 @@
         margin-right:22px;
         background-size: 20px 20px;
         padding:0 10px;
-        &:last-child{}
-        margin-right: 0;
+        &:last-child{
+          margin-right: 0;
+        }
         &.on{
           @include bg-image('star48_on');
         }
@@ -37,8 +38,9 @@
         height: 15px;
         margin-right:16px;
         background-size: 15px 15px;
-        &:last-child{}
-        margin-right: 0;
+        &:last-child{
+          margin-right: 0;
+        }
         &.on{
           @include bg-image('star36_on');
         }
