@@ -14,13 +14,14 @@
     </div>
     <router-view></router-view>
     <div class="content">
-      content
+      <v-goods :seller="seller"></v-goods>
     </div>
   </div>
 </template>
 
 <script>
   import header from './components/header/header.vue';
+  import goods from './components/goods/goods.vue';
   const ERR_OK = 0;
   export default {
     data () {
@@ -37,7 +38,8 @@
       });
     },
     components: {
-      'v-header': header
+      'v-header': header,
+      'v-goods': goods
     }
   };
 </script>
