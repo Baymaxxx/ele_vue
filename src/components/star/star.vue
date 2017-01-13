@@ -17,18 +17,17 @@
         height: 20px;
         margin-right:22px;
         background-size: 20px 20px;
-        padding:0 10px;
         &:last-child{
           margin-right: 0;
         }
         &.on{
-          @include bg-image('star48_on');
+          @include bg-image('img/star48_on');
         }
         &.half{
-          @include bg-image('star48_half');
+          @include bg-image('img/star48_half');
         }
         &.off{
-          @include bg-image('star48_off');
+          @include bg-image('img/star48_off');
         }
       }
     }
@@ -42,13 +41,13 @@
           margin-right: 0;
         }
         &.on{
-          @include bg-image('star36_on');
+          @include bg-image('img/star36_on');
         }
         &.half{
-          @include bg-image('star36_half');
+          @include bg-image('img/star36_half');
         }
         &.off{
-          @include bg-image('star36_off');
+          @include bg-image('img/star36_off');
         }
       }
     }
@@ -62,13 +61,13 @@
           margin-right: 0;
         }
         &.on{
-          @include bg-image('star24_on');
+          @include bg-image('img/star24_on');
         }
         &.half{
-          @include bg-image('star24_half');
+          @include bg-image('img/star24_half');
         }
         &.off{
-          @include bg-image('star24_off');
+          @include bg-image('img/star24_off');
         }
       }
     }

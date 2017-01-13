@@ -95,7 +95,7 @@
             display: inline-block;
             width: 30px;
             height: 18px;
-            @include bg-image("brand");
+            @include bg-image("img/brand");
             background-size: 30px 18px;
             background-repeat: no-repeat;
             .name {
@@ -120,16 +120,16 @@
             background-size: 12px;
             background-repeat: no-repeat;
             &.decrease {
-              @include bg-image('decrease_1');
+              @include bg-image('img/decrease_1');
             }
             &.discount {
-              @include bg-image('discount_1');
+              @include bg-image('img/discount_1');
             }
             &.guarantee {
-              @include bg-image('guarantee_1');
+              @include bg-image('img/guarantee_1');
             }
             &.special {
-              @include bg-image('special_1')
+              @include bg-image('img/special_1')
             }
           }
           .text {
@@ -175,7 +175,7 @@
         height: 12px;
         vertical-align: top;
         margin-top: 8px;
-        @include bg-image('bulletin');
+        @include bg-image('img/bulletin');
         background-repeat: no-repeat;
         background-size: 22px 12px;
       }
@@ -268,19 +268,19 @@
                 margin-right: 6px;
                 background-size: 16px 16px;
                 &.decrease {
-                  @include bg-image('decrease_2');
+                  @include bg-image('img/decrease_2');
                 }
                 &.discount {
-                  @include bg-image('discount_2');
+                  @include bg-image('img/discount_2');
                 }
                 &.guarantee {
-                  @include bg-image('guarantee_2');
+                  @include bg-image('img/guarantee_2');
                 }
                 &.invoice {
-                  @include bg-image('invoice_2');
+                  @include bg-image('img/invoice_2');
                 }
                 &.special {
-                  @include bg-image('special_2');
+                  @include bg-image('img/special_2');
                 }
               }
               .text{

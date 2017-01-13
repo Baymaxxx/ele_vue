@@ -43,7 +43,7 @@
   .goods {
     display: flex;
     position: absolute;
-    top: 174px;
+    top: 182px;
     bottom: 46px;
     width: 100%;
     overflow: hidden;
@@ -66,16 +66,16 @@
           background-size: 12px;
           background-repeat: no-repeat;
           &.decrease {
-            @include bg-image('decrease_3');
+            @include bg-image('img/decrease_3');
           }
           &.discount {
-            @include bg-image('discount_3');
+            @include bg-image('img/discount_3');
           }
           &.guarantee {
-            @include bg-image('guarantee_3');
+            @include bg-image('img/guarantee_3');
           }
           &.special {
-            @include bg-image('special_3')
+            @include bg-image('img/special_3')
           }
         }
         .text {

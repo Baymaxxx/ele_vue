@@ -9,7 +9,7 @@
   @mixin sizeType($width,$size,$length:5) {
     width: $width*$length;
     height: $width;
-    @include bg-image('star'+ $size +'_off');
+    @include bg-image('img/star'+ $size +'_off');
     background-size: $width $width;
     background-repeat: repeat;
     .starInner {
@@ -17,7 +17,7 @@
       left: 0;
       bottom: 0;
       height: $width;
-      @include bg-image('star'+ $size +'_on');
+      @include bg-image('img/star'+ $size +'_on');
       background-size: $width $width;
       background-repeat: repeat;
     }

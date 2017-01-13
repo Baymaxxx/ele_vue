@@ -13,9 +13,6 @@
       </div>
     </div>
     <router-view></router-view>
-    <div class="content">
-      <v-goods :seller="seller"></v-goods>
-    </div>
   </div>
 </template>
 
