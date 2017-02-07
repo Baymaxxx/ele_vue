@@ -39,5 +39,5 @@ new Vue({
   router: router,
   render: h => h(App)
 }).$mount('#app');
-//初始化进入good s
+// 初始化进入good s
 router.push('/goods');
