@@ -2,7 +2,8 @@
   <div class="goods">
     <div class="menu-wrapper" ref="menuWrapper">
       <ul>
-        <li v-for="(item,index) in goods" class="menu-item" :class="{'current':currentIndex === index}">
+        <li v-for="(item,index) in goods" class="menu-item" :class="{'current':currentIndex === index}"
+            @click="_selectMenu(index,$event)">
           <span class="text border-1px">
             <span v-show="item.type > 0" class="icon" :class="classMap[item.type]"></span>
             {{item.name}}
@@ -34,6 +35,7 @@
         </li>
       </ul>
     </div>
+    <shopcart :delivery-price="seller.deliveryPrice" :min-price="seller.minPrice"></shopcart>
   </div>
 
 </template>
@@ -58,13 +60,13 @@
         height: 54px;
         line-height: 14px;
         padding: 0 12px;
-        &.current{
+        &.current {
           position: relative;
           z-index: 10;
-          margin-top:-1px;
+          margin-top: -1px;
           background-color: #fff;
           font-weight: 700;
-          .text{
+          .text {
             @include border-none();
           }
         }
@@ -162,7 +164,10 @@
 </style>
 <script>
   import BScroll from 'better-scroll';
+  import shopcart from 'components/shopcart/shopcart';
+
   const ERR_OK = 0;
+
   export default {
     props: {
       seller: {
@@ -184,7 +189,8 @@
           if (!height2 || (this.scrollY >= height1 && this.scrollY < height2)) {
             return i;
           }
-        };
+        }
+        ;
         return 0;
       }
     },
@@ -203,9 +209,12 @@
     },
     methods: {
       _initScroll() {
-        this.menuScroll = new BScroll(this.$refs.menuWrapper, {});
+        this.menuScroll = new BScroll(this.$refs.menuWrapper, {
+          click: true
+        });
         this.foodScroll = new BScroll(this.$refs.foodWrapper, {
-          probeType: 3
+          probeType: 3,
+          click: true
         });
         this.foodScroll.on('scroll', (pos) => {
           this.scrollY = Math.abs(Math.round(pos.y));
@@ -220,7 +229,19 @@
           height += item.clientHeight;
           this.listHeight.push(height);
         }
+      },
+      _selectMenu(index, event) {
+        if (!event._constructed) {
+          return;
+        }
+        let foodList = this.$refs.foodWrapper.getElementsByClassName('food-list-hook');
+        let el = foodList[index];
+        this.foodScroll.scrollToElement(el, 300);
+        console.log(index);
       }
+    },
+    components: {
+        shopcart
     }
   };
 </script>
