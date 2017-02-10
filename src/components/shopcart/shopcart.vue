@@ -4,7 +4,10 @@
       <div class="content-left">
         <div class="logo-wrapper">
           <div class="logo">
-            <span class="icon-shopping_cart"></span>
+            <i class="icon-shopping_cart"></i>
+          </div>
+          <div class="number">
+
           </div>
         </div>
         <div class="price">￥{{totalPrice}}</div>
@@ -125,6 +128,13 @@
           total = food.price * food.count;
         });
         return total;
+      },
+      totalCount() {
+        let count = 0;
+        this.selectFoods.forEach((food) => {
+          count += food.count;
+        });
+        return count;
       }
     },
     data() {
