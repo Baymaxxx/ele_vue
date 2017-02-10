@@ -2,7 +2,7 @@
   <div class="goods">
     <div class="menu-wrapper" ref="menuWrapper">
       <ul>
-        <li v-for="item in goods" class="menu-item" :class="{'current':currentIndex === $index}">
+        <li v-for="(item,index) in goods" class="menu-item" :class="{'current':currentIndex === index}">
           <span class="text border-1px">
             <span v-show="item.type > 0" class="icon" :class="classMap[item.type]"></span>
             {{item.name}}
@@ -12,10 +12,10 @@
     </div>
     <div class="foods-wrapper" ref="foodWrapper">
       <ul>
-        <li v-for="item in goods" class="food-list food-list-hook">
+        <li v-for="(item,index) in goods" class="food-list food-list-hook">
           <h1 class="title">{{item.name}}</h1>
           <ul>
-            <li v-for="food in item.foods" class="food-item border-1px">
+            <li v-for="(food,index) in item.foods" class="food-item border-1px">
               <div class="icon"><img width="57" height="57" :src="food.icon" alt="icon"></div>
               <div class="content">
                 <h2 class="name">{{food.name}}</h2>
@@ -65,7 +65,7 @@
           background-color: #fff;
           font-weight: 700;
           .text{
-            border: none;
+            @include border-none();
           }
         }
         .icon {
@@ -178,10 +178,10 @@
     },
     computed: {
       currentIndex() {
-        for (let i = 0; i < this.listHeight; i++) {
+        for (let i = 0; i < this.listHeight.length; i++) {
           let height1 = this.listHeight[i];
           let height2 = this.listHeight[i + 1];
-          if (!height2 || (this.scrollY > height1 && this.scrollY < height2)) {
+          if (!height2 || (this.scrollY >= height1 && this.scrollY < height2)) {
             return i;
           }
         };
