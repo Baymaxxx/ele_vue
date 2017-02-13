@@ -3,19 +3,17 @@
     <div class="content">
       <div class="content-left">
         <div class="logo-wrapper">
-          <div class="logo">
+          <div class="logo" :class="{'highlight':totalCount > 0}">
             <i class="icon-shopping_cart"></i>
           </div>
-          <div class="number">
-
-          </div>
+          <div class="number" v-show="totalCount">{{totalCount}}</div>
         </div>
-        <div class="price">￥{{totalPrice}}</div>
+        <div class="price" :class="{'highlight':totalPrice > 0}">￥{{totalPrice}}</div>
         <div class="desc">另需配送费¥{{deliveryPrice}}元</div>
       </div>
       <div class="content-right">
-        <div class="pay">
-          ￥{{minPrice}}元起送
+        <div class="pay" :class="{'enough':totalPrice >= minPrice}">
+          {{payDesc}}
         </div>
       </div>
     </div>
@@ -54,11 +52,33 @@
             border-radius: 50%;
             text-align: center;
             background-color: #2b343c;
+            &.highlight {
+              background-color: rgb(0, 160, 220);
+              .icon-shopping_cart {
+                color: #fff;
+              }
+            }
             .icon-shopping_cart {
               font-size: 24px;
               line-height: 44px;
               color: #80858a;
             }
+          }
+          .number {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 24px;
+            height: 16px;
+            line-height: 16px;
+            text-align: center;
+            border-radius: 16px;
+            font-size: 9px;
+            font-weight: 700;
+            color: #fff;
+            background: rgb(240, 20, 20);
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4);
+
           }
         }
         .price {
@@ -72,6 +92,10 @@
           font-size: 16px;
           font-weight: 700;
           color: rgba(255, 255, 255, 0.4);
+          &.highlight {
+            color: #fff;
+            font-weight: 700;
+          }
         }
         .desc {
           display: inline-block;
@@ -93,6 +117,10 @@
           font-size: 12px;
           font-weight: 700;
           color: rgba(255, 255, 255, 0.4);
+          &.enough {
+            background-color: #00b43c;
+            color: #fff;
+          }
         }
       }
     }
@@ -114,8 +142,8 @@
         default() {
           return [
             {
-              price: 10,
-              count: 3
+              price: 1,
+              count: 1
             }
           ];
         }
@@ -135,6 +163,16 @@
           count += food.count;
         });
         return count;
+      },
+      payDesc() {
+        if (this.totalPrice === 0) {
+          return `￥${this.minPrice}元起送`;
+        } else if (this.totalPrice < this.minPrice) {
+          let diff = this.minPrice - this.totalPrice;
+          return `还差￥${diff}元起送`;
+        } else {
+          return '去结算';
+        }
       }
     },
     data() {
