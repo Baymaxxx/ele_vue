@@ -17,6 +17,15 @@
         </div>
       </div>
     </div>
+    <div class="ball-container">
+      <div v-for="(ball,index) in balls">
+        <transition name="drop">
+          <div class="ball" v-show="ball.show">
+            <div class="inner"></div>
+          </div>
+        </transition>
+      </div>
+    </div>
   </div>
 </template>
 <style lang="scss" rel="stylesheet/scss">
@@ -124,6 +133,24 @@
         }
       }
     }
+    .ball-container {
+      .ball {
+        position: fixed;
+        left: 32px;
+        bottom: 22px;
+        z-index: 200;
+        &.drop {
+          transition: all 0.4s;
+          .inner {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: rgb(0, 160, 220);
+            transition: all 0.4s;
+          }
+        }
+      }
+    }
   }
 </style>
 <script>
@@ -142,8 +169,8 @@
         default() {
           return [
             {
-              price: 1,
-              count: 1
+              price: 0,
+              count: 0
             }
           ];
         }
@@ -153,7 +180,7 @@
       totalPrice() {
         let total = 0;
         this.selectFoods.forEach((food) => {
-          total = food.price * food.count;
+          total += food.price * food.count;
         });
         return total;
       },
@@ -176,8 +203,31 @@
       }
     },
     data() {
-      return {};
+      return {
+        balls: [
+          {
+            show: false
+          },
+          {
+            show: false
+          },
+          {
+            show: false
+          },
+          {
+            show: false
+          },
+          {
+            show: false
+          }
+        ]
+      };
     },
-    components: {}
+    components: {},
+    methods: {
+      drop(el) {
+        console.log(el);
+      }
+    }
   };
 </script>
