@@ -259,9 +259,6 @@
         this.foodScroll.scrollToElement(el, 300);
       },
       _addFood(target) {
-        this._drop(target);
-      },
-      _drop(target) {
         this.$nextTick(() => {
           this.$refs.shopcart.drop(target);
         });
