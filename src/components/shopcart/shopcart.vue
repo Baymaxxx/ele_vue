@@ -164,7 +164,7 @@
         position: fixed;
         left: 32px;
         bottom: 22px;
-        z-index: 200;
+        z-index: 2000;
         transition: all 0.4s cubic-bezier(0.49, -0.29, 0.75, 0.41);
         .inner {
           width: 16px;
@@ -423,8 +423,7 @@
       }
     },
     components: {
-      cartcontrol,
-      BScroll
+      cartcontrol
     }
   };
 </script>
