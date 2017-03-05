@@ -1,12 +1,15 @@
 <template>
   <div class="ratingselect">
     <div class="rating-type border-1px">
-      <span :class="{'active':selectType === 2}" class="block positive">{{desc.all}}<span class="count">33</span></span>
-      <span :class="{'active':selectType === 0}" class="block positive">{{desc.positive}}<span class="count">3</span></span>
-      <span :class="{'active':selectType === 1}" class="block negative">{{desc.negative}}<span class="count">3</span></span>
+      <span @click="select(2,$event)" :class="{'active':selectType === 2}" class="block positive">{{desc.all}}<span
+        class="count">{{ratings.length}}</span></span>
+      <span @click="select(0,$event)" :class="{'active':selectType === 0}" class="block positive">{{desc.positive}}<span
+        class="count">{{positives.length}}</span></span>
+      <span @click="select(1,$event)" :class="{'active':selectType === 1}" class="block negative">{{desc.negative}}<span
+        class="count">{{negatives.length}}</span></span>
     </div>
     <div class="switch">
-      <span class="icon-check_circle"></span>
+      <span @click="toggleContent($event)" class="icon-check_circle" :class="{'on':onlyContent === true}"></span>
       <span class="text">只看有内容的评价</span>
     </div>
   </div>
@@ -49,11 +52,33 @@
         }
       }
     }
+    .switch {
+      padding: 12px 18px;
+      line-height: 24px;
+      border-bottom: 1px solid rgba(7, 17, 27, 0.2);
+      color: rgb(147, 153, 159);
+      font-size: 0;
+      .icon-check_circle {
+        display: inline-block;
+        vertical-align: top;
+        margin-right: 4px;
+        font-size: 24px;
+        &.on {
+          color: #00c850;
+        }
+      }
+      .text {
+        display: inline-block;
+        vertical-align: top;
+        font-size: 12px;
+      }
+    }
+
   }
 </style>
 <script>
-  //  const POSITIVE = 0;
-  //  const NEGATIVE = 1;
+  const POSITIVE = 0;
+  const NEGATIVE = 1;
   const ALL = 2;
 
   export default {
@@ -85,6 +110,34 @@
     },
     data() {
       return {};
+    },
+    methods: {
+      select(type, event) {
+        if (!event._constructed) {
+          return;
+        }
+        this.selectType = type;
+        this.$emit('select', type);
+      },
+      toggleContent(event) {
+        if (!event._constructed) {
+          return;
+        }
+        this.onlyContent === false ? this.onlyContent = true : this.onlyContent = false;
+        this.$emit('toggle');
+      }
+    },
+    computed: {
+      positives() {
+        return this.ratings.filter((rating) => {
+          return rating.rateType === POSITIVE;
+        });
+      },
+      negatives() {
+        return this.ratings.filter((ratings) => {
+          return ratings.rateType === NEGATIVE;
+        });
+      }
     },
     components: {}
   };
